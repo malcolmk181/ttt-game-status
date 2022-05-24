@@ -25,9 +25,7 @@ def won?(board)
 end
 
 def full?(board)
-  !result = board.find do |square|
-    square != "X" && square != "O"
-  end
+  !board.find { |square| square != "X" && square != "O" }
 end
 
 def draw?(board)
@@ -38,6 +36,7 @@ def over?(board)
   draw?(board) || won?(board)
 end
 
+# I used a local variable because I wanted to avoid calling the won? function twice
 def winner(board)
-  won?(board) ? board[won?(board)[0]] : nil
+  (result = won?(board)) ? board[result[0]] : nil
 end
